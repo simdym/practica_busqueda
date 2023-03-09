@@ -1,17 +1,16 @@
 package SmartCity;
 
 public class GoalTest {
-    Usarios usarios;
+    Users users;
 
     public boolean isGoalState(Object state) {
-        usarios = state;
-        return allUsersAtWork() || !timeIsOut();
+        Users = (Users) state;
+        return allUsersAtWork() && !timeIsOut();
     }
 
     private boolean allUsersAtWork() {
-        for(Usario usario: Usarios) {
-            // if(!usario.isAtWork()) {return false}
-            if(usario.getCoordX() != usario.getCoordDestinoX() || usario.getCoordY() != usario.getCoordDestinoY()) {
+        for(User user: users) {
+            if(user.getCoordX() != user.getCoordDestinationX() || user.getCoordY() != user.getCoordDestinationY()) {
                 return false;
             }
         }
