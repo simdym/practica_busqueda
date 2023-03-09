@@ -40,4 +40,5 @@ public class Pos {
     public int distance(Pos p) {
         return abs(p.getX() - this.x) + abs(p.getY() - this.y);
     }
+
 }
