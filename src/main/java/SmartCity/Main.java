@@ -22,7 +22,7 @@ public class Main {
         Set<int[]> poblation = new HashSet<>();
         for (int i = 0; i < n; ++i){
             int[] p = new int[4];
-            for (int j = 0; j < n; ++j){
+            for (int j = 0; j < 4; ++j){
                 p[j] = getRandomNumber(0, 100);
             }
             poblation.add(p);

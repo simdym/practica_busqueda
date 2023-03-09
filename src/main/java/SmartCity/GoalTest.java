@@ -1,6 +1,6 @@
 package SmartCity;
 
-public class GoalTest {
+public class GoalTest {/*
     Users users;
 
     public boolean isGoalState(Object state) {
@@ -20,4 +20,5 @@ public class GoalTest {
     boolean timeIsOut() {
         return time > 60;
     }
+*/
 }
