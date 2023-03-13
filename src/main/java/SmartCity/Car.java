@@ -1,8 +1,6 @@
 package SmartCity;
 
-import java.lang.reflect.Array;
 import java.util.*;
-import static java.lang.Math.abs;
 
 import IA.Comparticion.*;
 
@@ -24,20 +22,20 @@ public class Car {
 
     //-----Constructors:
 
-    //Empty constructor
-    public Car(){
-        this.pos.setPos(0,0);
-        this.destination.setPos(0,0);
-        this.remTime = 3600;
-        this.passengers.add(new Usuario());    //The driver
-    }
-
     //Constructor with parameters
     public Car(Pos ini, Pos dest, Usuario driver) {
         this.pos = ini;
         this.destination = dest;
         this.remTime = 3600;
         this.passengers.add(driver);    //The driver
+    }
+
+    //Constructor with only position
+    public Car(Pos ini, Pos dest) {
+        this.pos = ini;
+        this.destination = dest;
+        this.remTime = 3600;
+        this.passengers = new ArrayList<>();
     }
 
     //-----Getters:
@@ -52,6 +50,9 @@ public class Car {
     //Checks if the car reached destination
     public boolean hasFinished() { return this.pos.equals(this.destination);}
 
+    //Checks if the car is empty
+    public boolean isEmpty() { return this.passengers.isEmpty();}
+
     //Moves the car to a position, using time
     public void moveTo(Pos dest) {
         //Remaining time calculus (12 seconds per square)
@@ -64,5 +65,19 @@ public class Car {
 
     //Leaves a passenger
     public void leaveUser(Usuario pass) { this.passengers.remove(pass); }
+
+    //Returns the sum of time to drive all passengers to their destination
+    public int getTotalTime(){
+        int total = 0;
+        Pos aux = new Pos(passengers.get(0).getCoordOrigenX(), passengers.get(0).getCoordOrigenY());
+
+        for (int i = 0; i < passengers.size(); ++i) {
+            Pos dest = new Pos(passengers.get(i).getCoordDestinoX(), passengers.get(i).getCoordDestinoY());
+            total += 12 * aux.distance(dest);
+            aux = dest;
+        }
+
+        return total;
+    }
 
 }
